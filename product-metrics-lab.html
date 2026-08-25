@@ -738,6 +738,14 @@
                             Ít nhất <strong>3 Qualified Match Reviews</strong>
                             trong một active internship-search cycle.
                         </td>
+                        <p>
+                            Trong phạm vi bài lab này, một
+                            <strong>active internship-search cycle</strong>
+                            được operationalize là khoảng 30 ngày kể từ
+                            <code>internship_search_started</code>.
+                            Đây là window ban đầu để metric có thể tính được và cần được
+                            kiểm chứng lại bằng dữ liệu natural cadence thực tế sau này.
+                        </p>
                     </tr>
                 </tbody>
             </table>
@@ -768,13 +776,14 @@
 
                     <tr>
                         <td>
-                            Thời gian từ lúc sinh viên chọn một cơ hội
-                            đến khi hoàn thành review kết quả matching
+                            Thời gian từ <code>match_result_generated</code>
+                            đến <code>match_result_reviewed</code>
                         </td>
                         <td>
-                            Friction thấp giúp sinh viên nhận value nhanh hơn,
-                            từ đó làm tăng khả năng họ sử dụng matching với
-                            các cơ hội tiếp theo.
+                            Khoảng thời gian ngắn hơn cho thấy sinh viên có thể
+                            tiếp cận và nhận value từ kết quả matching với ít
+                            friction hơn, từ đó có thể làm tăng khả năng Core Action
+                            tiếp tục được lặp lại.
                         </td>
                     </tr>
 
@@ -1410,6 +1419,267 @@ Next Natural Trigger...
             </ul>
         </section>
         <section class="section">
+            <h2>07 — Tự soi lỗi &amp; Revision</h2>
+
+            <p>
+                Toàn bộ Metric System, Retention, Product Loop và Tracking
+                được đối chiếu lại với các lỗi phổ biến của framework trước
+                khi hoàn thiện bài nộp.
+            </p>
+
+
+            <h3>1. Checklist tự soi</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Câu tự kiểm</th>
+                        <th>Kết quả</th>
+                        <th>Lý do</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            Core Action có phải thao tác giao diện
+                            hoặc output hệ thống không?
+                        </td>
+                        <td><strong>Đạt</strong></td>
+                        <td>
+                            Không. Core Action là sinh viên xem và đánh giá
+                            kết quả matching. <code>match_result_generated</code>
+                            chỉ là output của hệ thống và không được xem là
+                            Core Action.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Activation có phải đăng nhập hoặc
+                            hoàn thành hướng dẫn không?
+                        </td>
+                        <td><strong>Đạt</strong></td>
+                        <td>
+                            Không. Activation chỉ xảy ra khi sinh viên
+                            hoàn thành Match Review đầu tiên sau khi bắt đầu
+                            hành trình tìm kiếm thực tập.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Frequency có bị đặt cao hơn nhu cầu thật không?
+                        </td>
+                        <td><strong>Đạt</strong></td>
+                        <td>
+                            Không sử dụng DAU hoặc yêu cầu Core Action xảy ra
+                            mỗi ngày. Frequency được gắn với các cơ hội thực tập
+                            thực sự cần đánh giá trong search cycle.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Loop có Reason to Return ngoài notification không?
+                        </td>
+                        <td><strong>Đạt</strong></td>
+                        <td>
+                            Có. Sinh viên quay lại khi xuất hiện một cơ hội
+                            thực tập mới cần đánh giá hoặc khi CV thay đổi,
+                            ngay cả khi không có notification.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Retention có dùng một window mặc định
+                            cho mọi cadence không?
+                        </td>
+                        <td><strong>Đạt</strong></td>
+                        <td>
+                            Không. Window 30 ngày được sử dụng như một
+                            custom search-cycle window và sẽ được kiểm chứng
+                            lại bằng dữ liệu natural cadence thực tế.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Mọi event có map về ít nhất một metric không?
+                        </td>
+                        <td><strong>Đạt</strong></td>
+                        <td>
+                            Có. Sáu Core Events trong Tracking đều được map
+                            trực tiếp tới Activation, Engagement, NSM,
+                            Retention, Leading Indicator hoặc Counter-Metric.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Mọi metric có event để tính không?
+                        </td>
+                        <td><strong>Đạt</strong></td>
+                        <td>
+                            Có. Sau revision, tất cả metric đều có event
+                            và timestamp tương ứng để tính toán.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h3>2. Revision Log</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Revision</th>
+                        <th>Lý do</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            Đổi Leading Indicator từ thời gian
+                            "chọn internship → review"
+                            thành
+                            <code>match_result_generated → match_result_reviewed</code>.
+                        </td>
+                        <td>
+                            Bộ tracking ban đầu không có event đại diện chính xác
+                            cho thời điểm sinh viên chọn internship. Thay đổi này
+                            đảm bảo Leading Indicator có thể được tính trực tiếp
+                            từ các Core Events đã định nghĩa.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Làm rõ active internship-search cycle là
+                            window 30 ngày kể từ
+                            <code>internship_search_started</code>.
+                        </td>
+                        <td>
+                            North Star Metric cần một frequency window rõ ràng
+                            để có thể tính được. Window này là giả định vận hành
+                            ban đầu và không được hiểu là monthly habit tự nhiên.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h3>3. Metric → Event Audit</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Event dùng để tính</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Activation Rate</td>
+                        <td>
+                            <code>internship_search_started</code> +
+                            <code>match_result_reviewed</code>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Engagement Frequency</td>
+                        <td>
+                            <code>match_result_reviewed</code>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Engagement Depth</td>
+                        <td>
+                            <code>match_result_reviewed</code> +
+                            <code>match_decision_recorded</code>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>North Star Metric</td>
+                        <td>
+                            <code>internship_search_started</code> +
+                            <code>match_result_reviewed</code> +
+                            <code>match_explanation_viewed</code> +
+                            <code>match_decision_recorded</code>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Retention</td>
+                        <td>
+                            <code>match_result_reviewed</code>
+                            với user, internship và timestamp khác nhau.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Generated → Reviewed Conversion</td>
+                        <td>
+                            <code>match_result_generated</code> +
+                            <code>match_result_reviewed</code>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Review Latency</td>
+                        <td>
+                            timestamp của
+                            <code>match_result_generated</code> và
+                            <code>match_result_reviewed</code>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Decision Rate</td>
+                        <td>
+                            <code>match_decision_recorded</code> +
+                            <code>match_result_reviewed</code>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Negative Match Feedback Rate</td>
+                        <td>
+                            <code>match_feedback_submitted</code>
+                            với <code>feedback_type = negative</code>
+                            và <code>match_result_reviewed</code>.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h3>Kết luận Gate 5</h3>
+
+            <p>
+                <strong>Kết quả: Đạt Gate 5.</strong>
+            </p>
+
+            <p>
+                Sau khi tự soi, hai điểm chưa đủ chặt đã được revision:
+                Leading Indicator được đổi sang một khoảng thời gian có event
+                đo được, và window của active internship-search cycle được
+                định nghĩa rõ để North Star Metric có thể tính toán.
+            </p>
+
+            <p>
+                Không phát hiện Core Action, cadence, retention hoặc Product Loop
+                nào cần thay đổi về bản chất.
+            </p>
+        </section>
+        <section class="section">
             <h2>2. Đầu vào và tài nguyên</h2>
 
             <h3>Use Case chính được chọn</h3>
@@ -1533,6 +1803,18 @@ Next Natural Trigger...
                             Người học xem xét và xác nhận loại loop,
                             metric hypothesis, core event set và các điều kiện
                             nghiệm thu được sử dụng trong bài lab.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phase 5 - Tự soi lỗi</td>
+                        <td>
+                            AI hỗ trợ đối chiếu Metric System và Tracking với 7 câu
+                            tự kiểm, phát hiện metric chưa có event trực tiếp để tính
+                            và gợi ý điểm cần revision.
+                        </td>
+                        <td>
+                            Người học xem xét, xác nhận các revision và hoàn thành
+                            Gate 5 trước khi chuẩn bị bài nộp.
                         </td>
                     </tr>
                 </tbody>
