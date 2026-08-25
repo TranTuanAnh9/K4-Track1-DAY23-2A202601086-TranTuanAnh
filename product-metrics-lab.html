@@ -83,6 +83,21 @@
         .scope-item:last-child {
             border-bottom: none;
         }
+
+        .loop-box {
+            margin: 16px 0;
+            padding: 20px;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow-x: auto;
+        }
+
+        .loop-box pre {
+            margin: 0;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
     </style>
 </head>
 
@@ -806,7 +821,7 @@
 
             <p>
                 <strong>Candidate tracking event:</strong>
-                <code>match_feedback_negative</code>
+                <code>match_feedback_submitted</code>
             </p>
         </section>
         <section class="section">
@@ -1002,6 +1017,399 @@
             </p>
         </section>
         <section class="section">
+            <h2>05 — Product Loop</h2>
+
+            <p>
+                Product Loop được xây dựng từ Core Action và natural cadence
+                đã xác định ở các phase trước, thay vì bắt đầu từ notification,
+                streak hoặc gamification.
+            </p>
+
+
+            <h3>1. Loại Loop chính</h3>
+
+            <p>
+                <strong>Event-response loop — vòng lặp phản ứng theo sự kiện.</strong>
+            </p>
+
+            <p>
+                Lý do là nhu cầu sử dụng matching xuất hiện khi sinh viên có
+                một cơ hội thực tập mới cần đánh giá hoặc khi hồ sơ thay đổi,
+                chứ không phải do một daily habit cố định.
+            </p>
+
+
+            <h3>2. Product Loop — Hai chu kỳ</h3>
+
+            <div class="loop-box">
+                <pre>
+CHU KỲ 1
+
+Natural Trigger
+Sinh viên phát hiện một cơ hội thực tập A cần cân nhắc
+        ↓
+Core Action
+Xem và đánh giá kết quả CV - Internship Matching
+        ↓
+Immediate Value
+Hiểu mức độ phù hợp, điểm mạnh và khoảng thiếu hụt
+        ↓
+Decision
+Shortlist hoặc loại bỏ cơ hội A
+        ↓
+Saved State / Investment
+Lưu lịch sử review và quyết định đối với cơ hội A
+        ↓
+
+
+CHU KỲ 2
+
+Next Natural Trigger
+Sinh viên phát hiện cơ hội thực tập B
+hoặc CV của sinh viên được cập nhật
+        ↓
+Core Action tiếp theo
+Xem và đánh giá kết quả matching cho cơ hội B
+        ↓
+Repeat Value
+Nhanh chóng hiểu B có phù hợp hay không,
+đồng thời có lịch sử trước đó làm ngữ cảnh so sánh
+        ↓
+Decision
+Shortlist hoặc loại bỏ cơ hội B
+        ↓
+Saved State / Investment
+Lịch sử đánh giá tiếp tục được tích lũy
+        ↓
+Next Natural Trigger...
+        </pre>
+            </div>
+
+
+            <h3>3. Reason to Return</h3>
+
+            <p>
+                Ngay cả khi bỏ notification, sinh viên vẫn có lý do quay lại
+                khi xuất hiện một cơ hội thực tập mới mà họ muốn đánh giá,
+                hoặc khi CV thay đổi và họ muốn kiểm tra lại mức độ phù hợp.
+            </p>
+
+            <p>
+                Lịch sử các kết quả đã review và các quyết định đã ghi nhận
+                giúp những lần đánh giá tiếp theo có thêm ngữ cảnh và giảm
+                effort so sánh lại từ đầu.
+            </p>
+
+
+            <h3>4. Metric Hypothesis</h3>
+
+            <blockquote>
+                Nếu loop này hoạt động, North Star Metric — số sinh viên hoàn thành
+                ít nhất 3 Qualified Match Reviews trong một active internship-search
+                cycle — sẽ tăng trong các search cycle 30 ngày, vì mỗi lần review
+                tạo ra giá trị tức thời và lưu lại lịch sử quyết định, giúp sinh viên
+                có thêm lý do và ít friction hơn khi đánh giá cơ hội thực tập tiếp theo.
+            </blockquote>
+
+            <p>
+                <strong>Quyết định của người học:</strong>
+                Tôi xác nhận hypothesis trên là giả thuyết được sử dụng để
+                kiểm chứng Product Loop trong bài lab.
+            </p>
+        </section>
+        <section class="section">
+            <h2>06 — Tracking nhanh</h2>
+
+            <p>
+                Chỉ những event cần thiết để tính các metric đã định nghĩa
+                ở Phase 3 mới được tracking. Các click hoặc page view không
+                phục vụ metric sẽ không được đưa vào core event set.
+            </p>
+
+
+            <h3>1. Core Events</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên event</th>
+                        <th>Ý nghĩa</th>
+                        <th>Thời điểm ghi nhận</th>
+                        <th>Metric sử dụng</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <code>internship_search_started</code>
+                        </td>
+
+                        <td>
+                            Sinh viên đã thực sự bắt đầu một hành trình
+                            tìm kiếm hoặc đánh giá cơ hội thực tập.
+                        </td>
+
+                        <td>
+                            Gửi khi sinh viên thực hiện hành động tìm kiếm
+                            hoặc chọn cơ hội đầu tiên để đánh giá trong
+                            một search cycle; không gửi chỉ vì mở trang.
+                        </td>
+
+                        <td>
+                            Activation Rate —
+                            Start Event và mốc bắt đầu Activation Window.
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <code>match_result_generated</code>
+                        </td>
+
+                        <td>
+                            Hệ thống đã hoàn thành việc tạo một kết quả matching
+                            cho một cặp CV - Internship cụ thể.
+                        </td>
+
+                        <td>
+                            Gửi sau khi quá trình matching hoàn tất thành công
+                            và kết quả có thể được hiển thị cho sinh viên;
+                            không gửi khi request mới bắt đầu.
+                        </td>
+
+                        <td>
+                            Leading Indicator:
+                            tỷ lệ từ match generated sang match reviewed.
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <code>match_result_reviewed</code>
+                        </td>
+
+                        <td>
+                            Sinh viên đã xem kết quả matching và tiếp cận
+                            nội dung đánh giá mức độ phù hợp.
+                        </td>
+
+                        <td>
+                            Gửi khi kết quả matching cùng nội dung đánh giá chính
+                            đã được hiển thị và sinh viên hoàn thành điều kiện
+                            review; không gửi ngay khi chỉ click mở trang.
+                        </td>
+
+                        <td>
+                            Activation Rate,
+                            Engagement Frequency,
+                            Retention Cohort Entry,
+                            Retention Return Event,
+                            Leading Indicator.
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <code>match_explanation_viewed</code>
+                        </td>
+
+                        <td>
+                            Sinh viên đã xem phần giải thích về điểm phù hợp,
+                            điểm mạnh và khoảng thiếu hụt của kết quả matching.
+                        </td>
+
+                        <td>
+                            Gửi khi phần giải thích chính thực sự được hiển thị
+                            cho sinh viên, không gửi khi dữ liệu mới được tải
+                            ở background.
+                        </td>
+
+                        <td>
+                            Quality Threshold của
+                            North Star Metric.
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <code>match_decision_recorded</code>
+                        </td>
+
+                        <td>
+                            Sinh viên đã ghi nhận một quyết định rõ ràng
+                            đối với cơ hội thực tập sau khi review,
+                            ví dụ shortlist hoặc loại bỏ.
+                        </td>
+
+                        <td>
+                            Gửi khi trạng thái quyết định được lưu thành công,
+                            ví dụ <code>shortlist</code> hoặc
+                            <code>dismiss</code>; không gửi khi user mới mở
+                            control chọn quyết định.
+                        </td>
+
+                        <td>
+                            Engagement Depth,
+                            Qualified Match Review,
+                            North Star Metric,
+                            Leading Indicator.
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td>
+                            <code>match_feedback_submitted</code>
+                        </td>
+
+                        <td>
+                            Sinh viên đã gửi feedback về chất lượng
+                            của kết quả matching.
+                        </td>
+
+                        <td>
+                            Gửi sau khi feedback được submit và lưu thành công.
+                            Feedback tiêu cực được xác định bằng
+                            <code>feedback_type = negative</code>.
+                        </td>
+
+                        <td>
+                            Counter-Metric:
+                            Negative Match Feedback Rate.
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+            <h3>2. Acceptance Criteria</h3>
+
+            <ol>
+                <li>
+                    <strong>Không ghi event trước khi hành vi hoàn tất.</strong>
+                    <code>match_result_reviewed</code> chỉ được ghi khi sinh viên
+                    thực sự hoàn thành điều kiện review kết quả. Việc click vào
+                    internship hoặc bắt đầu request matching không được tạo
+                    event này.
+                </li>
+
+                <li>
+                    <strong>Không ghi trùng do reload hoặc retry.</strong>
+                    Với cùng một <code>user_id</code> và
+                    <code>match_result_id</code>, reload trang hoặc retry request
+                    không được tạo thêm một
+                    <code>match_result_reviewed</code> cho cùng một lần review.
+                </li>
+
+                <li>
+                    <strong>Decision chỉ được ghi khi trạng thái đã thay đổi.</strong>
+                    <code>match_decision_recorded</code> chỉ được gửi sau khi
+                    quyết định shortlist hoặc dismiss được lưu thành công.
+                    Autosave hoặc render lại UI không được tạo event mới.
+                </li>
+
+                <li>
+                    <strong>Feedback phải là hành vi submit thực tế.</strong>
+                    Mở form feedback không tạo
+                    <code>match_feedback_submitted</code>.
+                    Event chỉ được ghi khi feedback đã được gửi thành công.
+                </li>
+            </ol>
+
+
+            <h3>3. Event → Metric Mapping</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Metric được tính</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><code>internship_search_started</code></td>
+                        <td>Activation Rate</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>match_result_generated</code></td>
+                        <td>Leading Indicator</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>match_result_reviewed</code></td>
+                        <td>
+                            Activation, Engagement Frequency,
+                            Retention, Leading Indicator
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><code>match_explanation_viewed</code></td>
+                        <td>NSM Quality Threshold</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>match_decision_recorded</code></td>
+                        <td>
+                            Engagement Depth, NSM,
+                            Leading Indicator
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><code>match_feedback_submitted</code></td>
+                        <td>Counter-Metric</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h3>Kết luận Gate 4</h3>
+
+            <p>
+                <strong>Kết quả: Đạt Gate 4.</strong>
+            </p>
+
+            <ul>
+                <li>
+                    Product Loop có tối thiểu hai chu kỳ.
+                </li>
+
+                <li>
+                    Loop có natural reason to return ngay cả khi
+                    không sử dụng notification.
+                </li>
+
+                <li>
+                    Metric Hypothesis trỏ trực tiếp về
+                    North Star Metric ở Phase 3.
+                </li>
+
+                <li>
+                    Có 6 core events, nằm trong yêu cầu từ 4 đến 8 events.
+                </li>
+
+                <li>
+                    Mỗi event đều map về ít nhất một metric.
+                </li>
+
+                <li>
+                    Tracking có acceptance criteria chống premature event
+                    và duplicate event.
+                </li>
+            </ul>
+        </section>
+        <section class="section">
             <h2>2. Đầu vào và tài nguyên</h2>
 
             <h3>Use Case chính được chọn</h3>
@@ -1110,6 +1518,21 @@
                             Người học xem xét và xác nhận metric definitions,
                             retention window, quality threshold và các ngưỡng
                             sử dụng cho bài lab.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phase 4 - Product Loop &amp; Tracking</td>
+
+                        <td>
+                            AI hỗ trợ brainstorm cấu trúc Product Loop,
+                            tên candidate events, event-to-metric mapping
+                            và acceptance criteria cho tracking.
+                        </td>
+
+                        <td>
+                            Người học xem xét và xác nhận loại loop,
+                            metric hypothesis, core event set và các điều kiện
+                            nghiệm thu được sử dụng trong bài lab.
                         </td>
                     </tr>
                 </tbody>
