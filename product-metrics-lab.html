@@ -561,6 +561,447 @@
             </ul>
         </section>
         <section class="section">
+            <h2>03 — Metric System</h2>
+
+            <p>
+                Hệ thống metric được xây dựng từ Core Action
+                <code>match_result_reviewed</code> và natural cadence theo sự kiện
+                của quá trình tìm kiếm thực tập.
+            </p>
+
+
+            <h3>1. Activation Metric</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Thành phần</th>
+                        <th>Định nghĩa</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><strong>Start event</strong></td>
+                        <td>
+                            <code>internship_search_started</code> —
+                            sinh viên bắt đầu một hành trình tìm kiếm hoặc
+                            đánh giá cơ hội thực tập.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Activation event</strong></td>
+                        <td>
+                            <code>match_result_reviewed</code> —
+                            sinh viên hoàn tất việc xem kết quả matching đầu tiên
+                            giữa CV của mình và một cơ hội thực tập.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Time window</strong></td>
+                        <td>
+                            Activation event phải xảy ra trong vòng
+                            <strong>7 ngày</strong> kể từ
+                            <code>internship_search_started</code>.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                <strong>Activation Rate:</strong>
+            </p>
+
+            <p>
+                Số sinh viên có ít nhất một
+                <code>match_result_reviewed</code> trong vòng 7 ngày
+                sau <code>internship_search_started</code>
+                chia cho tổng số sinh viên đã bắt đầu hành trình tìm kiếm.
+            </p>
+
+            <p>
+                Login, mở ứng dụng hoặc hoàn thành onboarding không được tính là
+                activation vì tại các thời điểm đó sinh viên chưa nhận được
+                core value từ CV - Internship Matching.
+            </p>
+
+
+            <h3>2. Engagement Metrics</h3>
+
+            <p>
+                Hai góc đo được chọn là <strong>frequency</strong>
+                và <strong>depth</strong>.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Góc đo</th>
+                        <th>Metric</th>
+                        <th>Ý nghĩa</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><strong>Frequency</strong></td>
+                        <td>
+                            Số cơ hội thực tập khác nhau có
+                            <code>match_result_reviewed</code>
+                            trên mỗi sinh viên trong một active search cycle.
+                        </td>
+                        <td>
+                            Đo mức độ Core Action được lặp lại khi sinh viên
+                            có thêm các cơ hội cần đánh giá.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Depth</strong></td>
+                        <td>
+                            Tỷ lệ kết quả matching đã review dẫn tới một
+                            quyết định rõ ràng như shortlist hoặc loại bỏ
+                            cơ hội đó.
+                        </td>
+                        <td>
+                            Đo việc kết quả matching có thực sự giúp sinh viên
+                            đưa ra quyết định thay vì chỉ mở kết quả rồi bỏ qua.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h3>3. North Star Metric</h3>
+
+            <p>
+                <strong>
+                    North Star Metric:
+                    Số sinh viên hoàn thành ít nhất 3 Qualified Match Reviews
+                    trong một active internship-search cycle.
+                </strong>
+            </p>
+
+            <p>
+                Một <strong>Qualified Match Review</strong> là một kết quả matching
+                giữa một CV và một cơ hội thực tập khác nhau mà sinh viên đã xem
+                phần giải thích chính và sau đó ghi nhận một quyết định
+                đối với cơ hội đó.
+            </p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Thành phần NSM</th>
+                        <th>Định nghĩa</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><strong>Unit of value</strong></td>
+                        <td>
+                            Một Qualified Match Review của một cặp
+                            CV - Internship cụ thể.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Quality threshold</strong></td>
+                        <td>
+                            Sinh viên không chỉ mở kết quả mà phải xem phần
+                            giải thích chính và ghi nhận quyết định như
+                            shortlist hoặc loại bỏ cơ hội.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Frequency</strong></td>
+                        <td>
+                            Ít nhất <strong>3 Qualified Match Reviews</strong>
+                            trong một active internship-search cycle.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h3>4. Leading Indicators</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Leading Indicator</th>
+                        <th>Vì sao có thể dự báo Core Action lặp lại?</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            Tỷ lệ từ <code>match_result_generated</code>
+                            sang <code>match_result_reviewed</code>
+                        </td>
+                        <td>
+                            Nếu nhiều kết quả được tạo thực sự được sinh viên xem,
+                            khả năng Core Action được hoàn thành và tiếp tục lặp lại
+                            với các cơ hội khác sẽ cao hơn.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Thời gian từ lúc sinh viên chọn một cơ hội
+                            đến khi hoàn thành review kết quả matching
+                        </td>
+                        <td>
+                            Friction thấp giúp sinh viên nhận value nhanh hơn,
+                            từ đó làm tăng khả năng họ sử dụng matching với
+                            các cơ hội tiếp theo.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Tỷ lệ <code>match_decision_recorded</code>
+                            trên <code>match_result_reviewed</code>
+                        </td>
+                        <td>
+                            Nếu review thường xuyên dẫn tới một quyết định rõ ràng,
+                            kết quả matching có khả năng đang tạo value thực tế,
+                            làm tăng lý do để sinh viên quay lại.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h3>5. Counter-Metric</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Counter-Metric</th>
+                        <th>Lý do theo dõi</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>Negative Match Feedback Rate</strong>
+                        </td>
+                        <td>
+                            Tỷ lệ kết quả matching bị sinh viên đánh giá là
+                            không chính xác hoặc không hữu ích.
+                            Core Action có thể tăng nhưng metric này không được
+                            xấu đi, nếu không hệ thống có thể chỉ đang tạo
+                            nhiều interaction hơn nhưng chất lượng matching giảm.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                <strong>Candidate tracking event:</strong>
+                <code>match_feedback_negative</code>
+            </p>
+        </section>
+        <section class="section">
+            <h2>04 — Retention Definition</h2>
+
+            <p>
+                Retention được định nghĩa dựa trên natural cadence theo sự kiện,
+                không dựa trên giả định rằng sinh viên phải quay lại ứng dụng
+                mỗi ngày.
+            </p>
+
+
+            <h3>1. Retention Definition — 6 thành phần</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Thành phần</th>
+                        <th>Định nghĩa</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><strong>Unit</strong></td>
+                        <td>
+                            Một sinh viên.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Cohort entry</strong></td>
+                        <td>
+                            Lần đầu sinh viên hoàn thành
+                            <code>match_result_reviewed</code>.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Return event</strong></td>
+                        <td>
+                            Sinh viên hoàn thành một
+                            <code>match_result_reviewed</code> khác
+                            cho một cơ hội thực tập khác với cơ hội
+                            ở lần activation đầu tiên.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Window</strong></td>
+                        <td>
+                            <strong>Custom search-cycle window:</strong>
+                            trong vòng 30 ngày kể từ lần
+                            <code>match_result_reviewed</code> đầu tiên.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Threshold</strong></td>
+                        <td>
+                            Có ít nhất <strong>1 return event</strong>
+                            trên một cơ hội thực tập khác trong window.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Segment</strong></td>
+                        <td>
+                            Sinh viên đang chủ động tìm kiếm thực tập,
+                            có CV/hồ sơ đủ dữ liệu và đã hoàn thành
+                            ít nhất một CV - Internship Matching review.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h3>2. Retention Metric</h3>
+
+            <p>
+                <strong>30-day Search-Cycle Retention:</strong>
+                tỷ lệ sinh viên đã hoàn thành Match Review đầu tiên
+                và quay lại review ít nhất một cơ hội thực tập khác
+                trong vòng 30 ngày.
+            </p>
+
+            <p>
+                Khoảng 30 ngày ở đây được sử dụng như một
+                <strong>custom search-cycle window</strong>,
+                không có nghĩa sản phẩm có monthly habit.
+                Sau khi có dữ liệu thực tế, window này cần được kiểm chứng
+                lại theo phân phối thời gian giữa hai Core Action của sinh viên.
+            </p>
+
+
+            <h3>3. Ba mốc dùng để đánh giá Retention</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mốc so sánh</th>
+                        <th>Cách sử dụng</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><strong>Natural cycle</strong></td>
+                        <td>
+                            So sánh thời gian thực tế giữa các lần sinh viên
+                            có cơ hội thực tập mới cần đánh giá.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Đúng cohort / segment</strong></td>
+                        <td>
+                            Chỉ so sánh retention giữa các sinh viên thực sự
+                            đang trong giai đoạn tìm kiếm thực tập và có
+                            hồ sơ đủ điều kiện matching.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Category benchmark</strong></td>
+                        <td>
+                            Benchmark của các sản phẩm hỗ trợ tìm kiếm việc làm
+                            hoặc career matching chỉ được sử dụng làm bối cảnh,
+                            không dùng một con số cố định làm mục tiêu khi chưa
+                            xác nhận sự tương đồng về use case và cadence.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h3>4. Vì sao không dùng D7 Retention đơn thuần?</h3>
+
+            <p>
+                Core Action của P-103 không phải daily habit.
+                Nếu một sinh viên đã đánh giá đủ các cơ hội phù hợp trong vài ngày
+                và chưa có vị trí mới, việc họ không quay lại ở đúng ngày thứ 7
+                không nhất thiết có nghĩa sản phẩm mất retention.
+            </p>
+
+            <p>
+                Vì vậy retention được gắn với một search cycle và sự xuất hiện
+                của cơ hội mới cần đánh giá thay vì chỉ kiểm tra việc mở ứng dụng
+                ở một ngày cố định.
+            </p>
+
+
+            <h3>Kết luận Gate 3</h3>
+
+            <p>
+                <strong>Kết quả: Đạt Gate 3.</strong>
+            </p>
+
+            <ul>
+                <li>
+                    Activation có Start Event, Activation Event và Time Window.
+                </li>
+
+                <li>
+                    Engagement chỉ sử dụng hai góc đo:
+                    Frequency và Depth.
+                </li>
+
+                <li>
+                    Retention có đầy đủ Unit, Cohort Entry, Return Event,
+                    Window, Threshold và Segment.
+                </li>
+
+                <li>
+                    Retention window phù hợp với nature theo sự kiện
+                    thay vì mặc định daily habit.
+                </li>
+
+                <li>
+                    North Star Metric có Unit of Value,
+                    Quality Threshold và Frequency.
+                </li>
+
+                <li>
+                    Có Counter-Metric để bảo vệ chất lượng matching.
+                </li>
+            </ul>
+
+            <p>
+                <strong>Quyết định của người học:</strong>
+                Tôi xác nhận bộ metric trên được sử dụng làm Metric System
+                cho các phase Product Loop và Tracking tiếp theo.
+            </p>
+        </section>
+        <section class="section">
             <h2>2. Đầu vào và tài nguyên</h2>
 
             <h3>Use Case chính được chọn</h3>
@@ -655,6 +1096,20 @@
                             Người học xem xét và xác nhận Core Action có dạng hành vi
                             theo sự kiện, với cadence gắn với các cơ hội thực tập
                             cần được đánh giá.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phase 3 - Metric System &amp; Retention</td>
+                        <td>
+                            AI hỗ trợ brainstorm cách định nghĩa Activation,
+                            Engagement, Retention, North Star Metric,
+                            Leading Indicators và Counter-Metric dựa trên
+                            Core Action và natural cadence đã chọn.
+                        </td>
+                        <td>
+                            Người học xem xét và xác nhận metric definitions,
+                            retention window, quality threshold và các ngưỡng
+                            sử dụng cho bài lab.
                         </td>
                     </tr>
                 </tbody>
