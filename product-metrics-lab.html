@@ -170,6 +170,230 @@
             </div>
         </section>
         <section class="section">
+            <h2>01 — Core Action</h2>
+
+            <p>
+                Phần này xác định hành vi của người dùng gần nhất với giá trị
+                cốt lõi của use case CV - Internship Matching.
+            </p>
+
+            <h3>1. Phân biệt Core Job, Core Action, Core Value và Core Value Event</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Khái niệm</th>
+                        <th>Câu trả lời</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><strong>Core Job</strong></td>
+                        <td>
+                            Tôi mất nhiều thời gian để tự đọc và so sánh các cơ hội
+                            thực tập, nhưng vẫn khó biết vị trí nào thực sự phù hợp
+                            với CV, kỹ năng và định hướng nghề nghiệp của mình.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Core Action</strong></td>
+                        <td>
+                            Sinh viên xem và đánh giá một kết quả matching hoàn chỉnh
+                            giữa CV của mình và một cơ hội thực tập.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Core Value</strong></td>
+                        <td>
+                            Sinh viên hiểu được mức độ phù hợp giữa hồ sơ của mình
+                            và cơ hội thực tập, bao gồm những điểm phù hợp và những
+                            khoảng thiếu hụt cần cân nhắc trước khi ứng tuyển.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Core Value Event</strong></td>
+                        <td>
+                            <code>match_result_reviewed</code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h3>2. Core Action Card</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Thành phần</th>
+                        <th>Câu trả lời</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><strong>Target user</strong></td>
+                        <td>
+                            Sinh viên đang tìm kiếm cơ hội thực tập phù hợp
+                            với hồ sơ và định hướng nghề nghiệp.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Core job</strong></td>
+                        <td>
+                            Xác định cơ hội thực tập nào thực sự phù hợp với
+                            CV, kỹ năng và định hướng nghề nghiệp của bản thân.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Core action</strong></td>
+                        <td>
+                            Xem và đánh giá một kết quả matching hoàn chỉnh
+                            giữa CV cá nhân và một cơ hội thực tập.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Object</strong></td>
+                        <td>
+                            Kết quả matching giữa một CV sinh viên và
+                            một cơ hội thực tập cụ thể.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Preconditions</strong></td>
+                        <td>
+                            Sinh viên đã có CV hoặc hồ sơ trong hệ thống,
+                            cơ hội thực tập có thông tin yêu cầu vị trí,
+                            và hệ thống đã tạo được kết quả matching.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Completion rule</strong></td>
+                        <td>
+                            Action được xem là hoàn tất khi sinh viên mở
+                            kết quả matching và xem phần đánh giá mức độ phù hợp
+                            cùng các thông tin giải thích chính của kết quả.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Core value</strong></td>
+                        <td>
+                            Sinh viên nhanh chóng hiểu cơ hội thực tập có phù hợp
+                            với hồ sơ của mình hay không và có thêm cơ sở
+                            để quyết định có tiếp tục xem xét vị trí đó.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Evidence of value</strong></td>
+                        <td>
+                            Sinh viên chủ động xem kết quả matching thay vì chỉ
+                            để hệ thống tạo kết quả, đồng thời tiếp cận thông tin
+                            về điểm phù hợp và khoảng thiếu hụt của hồ sơ.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Candidate event</strong></td>
+                        <td>
+                            <code>match_result_reviewed</code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h3>3. Tự kiểm Core Action</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tiêu chí</th>
+                        <th>Kết quả</th>
+                        <th>Giải thích</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><strong>1. Gần Core Value</strong></td>
+                        <td>Đạt</td>
+                        <td>
+                            Sau khi đánh giá kết quả matching, sinh viên đã tiến
+                            gần rõ rệt tới việc xác định cơ hội thực tập phù hợp.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>2. Có thể lặp lại</strong></td>
+                        <td>Đạt</td>
+                        <td>
+                            Sinh viên có thể thực hiện hành vi này với nhiều
+                            cơ hội thực tập khác nhau trong quá trình tìm việc.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>3. Có thể quan sát</strong></td>
+                        <td>Đạt</td>
+                        <td>
+                            Hệ thống có thể xác định khi sinh viên mở và hoàn tất
+                            việc xem một kết quả matching.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>4. Có ý nghĩa</strong></td>
+                        <td>Đạt</td>
+                        <td>
+                            Việc nhiều sinh viên thực sự xem kết quả matching
+                            cho thấy chức năng matching đang được sử dụng để
+                            hỗ trợ quyết định về cơ hội thực tập.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>5. Có thể tác động</strong></td>
+                        <td>Đạt</td>
+                        <td>
+                            Team có thể cải thiện chất lượng matching,
+                            cách giải thích kết quả và trải nghiệm hiển thị
+                            để tăng khả năng sinh viên hoàn thành core action.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Kết luận Gate 1</h3>
+
+            <p>
+                <strong>Kết quả: 5/5 tiêu chí — Đạt Gate 1.</strong>
+            </p>
+
+            <p>
+                Core Action được chọn không phải là "mở ứng dụng",
+                "đăng nhập" hay "hỏi AI". Giá trị chỉ bắt đầu được chứng minh
+                khi sinh viên thực sự xem và đánh giá kết quả matching giữa
+                hồ sơ của mình và một cơ hội thực tập cụ thể.
+            </p>
+
+            <p>
+                <strong>Quyết định của người học:</strong>
+                Tôi chọn hành vi xem và đánh giá một kết quả CV - Internship
+                Matching hoàn chỉnh làm Core Action cho các phase tiếp theo.
+            </p>
+        </section>
+        <section class="section">
             <h2>2. Đầu vào và tài nguyên</h2>
 
             <h3>Use Case chính được chọn</h3>
@@ -239,6 +463,18 @@
                         <td>
                             Người học xác nhận dự án P-103, persona sinh viên
                             và phạm vi use case được sử dụng cho bài lab.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phase 1 - Core Action</td>
+                        <td>
+                            AI hỗ trợ brainstorm ứng viên Core Action, phân biệt
+                            Core Action với output của hệ thống và hỗ trợ kiểm tra
+                            Core Action theo 5 tiêu chí của bài lab.
+                        </td>
+                        <td>
+                            Người học xem xét và xác nhận Core Action được sử dụng
+                            cho các phase metric, retention và tracking tiếp theo.
                         </td>
                     </tr>
                 </tbody>
