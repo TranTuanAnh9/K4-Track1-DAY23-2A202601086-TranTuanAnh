@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,6 +56,33 @@
             background: #eef2ff;
             font-size: 14px;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 16px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #e5e7eb;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #f3f4f6;
+        }
+
+        .scope-item {
+            padding: 16px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .scope-item:last-child {
+            border-bottom: none;
+        }
     </style>
 </head>
 
@@ -87,12 +115,110 @@
             </p>
         </section>
 
-        <!--
-            Các phần tiếp theo của bài lab sẽ được thêm ở đây
-            theo từng phase của Codelab.
-        -->
+        <section class="section">
+            <h2>1. Đề bài và cách làm</h2>
 
+            <p>
+                Mục tiêu của bài lab là xác định hành vi chứng minh người dùng
+                thực sự nhận được giá trị từ sản phẩm và xây dựng hệ thống metric
+                để đo lường hành vi đó.
+            </p>
+
+            <h3>Chuỗi phân tích</h3>
+
+            <p>
+                Core Action → Natural Cadence → Metric System + Retention
+                → Product Loop → Tracking
+            </p>
+
+            <h3>Nguyên tắc thực hiện</h3>
+
+            <ul>
+                <li>Metric phải xuất phát từ use case thực tế của sản phẩm.</li>
+                <li>Nurture chỉ hỗ trợ và khuếch đại nhu cầu tự nhiên của người dùng.</li>
+                <li>Không mặc định sản phẩm phải có daily habit.</li>
+                <li>Mỗi tracking event phải phục vụ ít nhất một metric.</li>
+                <li>Product Loop là giả thuyết và metric được dùng để kiểm chứng giả thuyết đó.</li>
+            </ul>
+        </section>
+        <section class="section">
+            <h2>Phase 0 - Phạm vi bài làm</h2>
+
+            <div class="scope-item">
+                <h3>Dự án được chọn</h3>
+                <p>
+                    P-103 – Nền tảng AI hỗ trợ sinh viên trong quá trình
+                    tìm kiếm và chuẩn bị cho kỳ thực tập.
+                </p>
+            </div>
+
+            <div class="scope-item">
+                <h3>Persona chính</h3>
+                <p>
+                    Sinh viên đang tìm kiếm cơ hội thực tập phù hợp với hồ sơ,
+                    kỹ năng và định hướng nghề nghiệp của bản thân.
+                </p>
+            </div>
+
+            <div class="scope-item">
+                <h3>Core Job</h3>
+                <p>
+                    Giúp sinh viên xác định được cơ hội thực tập phù hợp với
+                    hồ sơ và năng lực của mình, đồng thời hỗ trợ sinh viên
+                    chuẩn bị tốt hơn cho quá trình ứng tuyển.
+                </p>
+            </div>
+
+            <div class="scope-item">
+                <h3>Phạm vi phân tích</h3>
+                <p>
+                    Bài lab tập trung vào trải nghiệm của sinh viên khi sử dụng
+                    hệ thống để tìm kiếm, đánh giá và xác định các cơ hội thực tập
+                    phù hợp với hồ sơ cá nhân. Các metric được xây dựng sẽ tập trung
+                    vào việc đo mức độ sinh viên thực sự nhận được giá trị từ quá trình
+                    matching giữa hồ sơ/CV và cơ hội thực tập.
+                </p>
+            </div>
+        </section>
+        <section class="section">
+            <h2>AI Support Log</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>AI được sử dụng để</th>
+                        <th>Quyết định của người học</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Khởi tạo bài lab</td>
+                        <td>
+                            Hỗ trợ giải thích yêu cầu bài lab,
+                            tổ chức cấu trúc repository và cấu trúc file HTML.
+                        </td>
+                        <td>
+                            Người học tự lựa chọn dự án, persona,
+                            core job và các quyết định product metrics.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phase 0 - Phạm vi</td>
+                        <td>
+                            AI hỗ trợ đề xuất cách diễn đạt project scope,
+                            persona và core job dựa trên thông tin dự án.
+                        </td>
+                        <td>
+                            Người học xem xét và xác nhận phạm vi sử dụng
+                            cho các phase tiếp theo.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
     </div>
-
 </body>
+
 </html>
